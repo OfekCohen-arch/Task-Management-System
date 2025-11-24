@@ -3,11 +3,13 @@ import { todoService } from "../services/todo.service.js";
 import { userService } from "../services/user.service.js";
 const initialState = {
   todos: [],
+  todoToGet: todoService.getEmptyTodo(),
   filterBy: todoService.getDefaultFilter(),
   isLoading: false,
   loggedinUser: userService.getLoggedinUser(),
 };
 // Todo
+export const GET_TODO = 'GET_TODO'
 export const SET_TODOS = "SET_TODOS";
 export const REMOVE_TODO = "REMOVE_TODO";
 export const ADD_TODO = "ADD_TODO";
@@ -22,6 +24,11 @@ export const SET_USER = "SET_USER";
 
 function appReducer(state = initialState, cmd = {}) {
   switch (cmd.type) {
+    case GET_TODO:
+      return{
+        ...state,
+        todoToGet: {...cmd.todoToGet}
+      }
     case SET_TODOS:
       return {
         ...state,

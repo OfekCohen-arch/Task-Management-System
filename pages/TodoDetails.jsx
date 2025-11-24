@@ -1,12 +1,13 @@
 import { todoService } from "../services/todo.service.js"
 import { showErrorMsg } from "../services/event-bus.service.js"
-
+import { getTodo } from "../store/todo.actions.js"
+const {useSelector,useDispatch} = ReactRedux
 const { useState, useEffect } = React
 const { useParams, useNavigate, Link } = ReactRouterDOM
 
 export function TodoDetails() {
-
-    const [todo, setTodo] = useState(null)
+    const todo = useSelector((state)=>state.todoToGet)
+    const isLoading = useSelector((state)=>state.isLoading)
     const params = useParams()
     const navigate = useNavigate()
 
@@ -16,8 +17,7 @@ export function TodoDetails() {
 
 
     function loadTodo() {
-        todoService.get(params.todoId)
-            .then(setTodo)
+        getTodo(params.todoId)
             .catch(err => {
                 console.error('err:', err)
                 showErrorMsg('Cannot load todo')
@@ -31,9 +31,12 @@ export function TodoDetails() {
         // navigate(-1)
     }
 
-    if (!todo) return <div>Loading...</div>
     return (
         <section className="todo-details">
+            {
+                isLoading? 'Loading...'
+                :
+                <div>
             <h1 className={(todo.isDone)? 'done' : ''}>{todo.txt}</h1>
             <h2>{(todo.isDone)? 'Done!' : 'In your list'}</h2>
 
@@ -44,6 +47,7 @@ export function TodoDetails() {
                 <Link to={`/todo/${todo.nextTodoId}`}>Next Todo</Link> |
                 <Link to={`/todo/${todo.prevTodoId}`}>Previous Todo</Link>
             </div>
+            </div>}
         </section>
     )
 }

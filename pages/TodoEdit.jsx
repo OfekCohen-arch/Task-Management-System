@@ -1,12 +1,15 @@
 import { todoService } from "../services/todo.service.js"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
+import { getTodo } from "../store/todo.actions.js"
 
 const { useState, useEffect } = React
+const {useSelector,useDispatch} = ReactRedux
 const { useNavigate, useParams } = ReactRouterDOM
 
 export function TodoEdit() {
 
-    const [todoToEdit, setTodoToEdit] = useState(todoService.getEmptyTodo())
+    const todoToEdit = useSelector((state)=>state.todoToGet)
+    const isLoading = useSelector((state)=>state.isLoading)
     const navigate = useNavigate()
     const params = useParams()
 
@@ -15,8 +18,7 @@ export function TodoEdit() {
     }, [])
 
     function loadTodo() {
-        todoService.get(params.todoId)
-            .then(setTodoToEdit)
+        getTodo(params.todoId)
             .catch(err => console.log('err:', err))
     }
 
@@ -58,7 +60,10 @@ export function TodoEdit() {
 
     return (
         <section className="todo-edit">
-            <form onSubmit={onSaveTodo} >
+            {
+                isLoading? 'Loading...'
+                :
+                <form onSubmit={onSaveTodo} >
                 <label htmlFor="txt">Text:</label>
                 <input onChange={handleChange} value={txt} type="text" name="txt" id="txt" />
 
@@ -70,7 +75,7 @@ export function TodoEdit() {
 
 
                 <button>Save</button>
-            </form>
+            </form>}
         </section>
     )
 }

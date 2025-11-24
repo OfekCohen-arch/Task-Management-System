@@ -1,6 +1,6 @@
 import { todoService } from "../services/todo.service.js";
 import { userService } from "../services/user.service.js";
-import { ADD_TODO, REMOVE_TODO, SET_TODOS, SET_IS_LOADING, store, UPDATE_TODO } from "./store.js"
+import { GET_TODO,ADD_TODO, REMOVE_TODO, SET_TODOS, SET_IS_LOADING, store, UPDATE_TODO } from "./store.js"
 
 export function loadTodos(filterBy) {
 
@@ -18,7 +18,18 @@ export function loadTodos(filterBy) {
             store.dispatch({ type: SET_IS_LOADING, isLoading: false })
         })
 }
-
+export function getTodo(todoId){
+store.dispatch({type:SET_IS_LOADING,isLoading: true})
+return todoService.get(todoId)
+.then((todo)=> store.dispatch({type:GET_TODO,todoToGet: todo}))
+.catch(err =>{
+    console.log('Cannot load todo',err);
+    throw err
+})
+.finally(()=>{
+    store.dispatch({type: SET_IS_LOADING,isLoading: false})
+})
+}
 export function removeTodo(todoId) {
     return todoService.remove(todoId)
         .then(() => {

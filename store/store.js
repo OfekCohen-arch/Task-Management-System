@@ -6,7 +6,7 @@ const initialState = {
   todoToGet: todoService.getEmptyTodo(),
   filterBy: todoService.getDefaultFilter(),
   isLoading: false,
-  loggedinUser: userService.getLoggedinUser(),
+  loggedinUser: userService.getLoggedinUser()
 };
 // Todo
 export const GET_TODO = 'GET_TODO'

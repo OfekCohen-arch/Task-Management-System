@@ -33,7 +33,17 @@ export function TodoIndex() {
     }, [filterBy])
 
     function onRemoveTodo(todoId) {
-        removeTodo(todoId)
+        Swal.fire({
+  title: "Are you sure?",
+  text: "You won't be able to revert this!",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#3085d6",
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Yes, delete it!"
+}).then((result) => {
+  if (result.isConfirmed) {
+    removeTodo(todoId)
             .then(() => {
                 showSuccessMsg(`Todo removed`)
             })
@@ -41,6 +51,9 @@ export function TodoIndex() {
                 console.log('err:', err)
                 showErrorMsg('Cannot remove todo ' + todoId)
             })
+  }
+});
+        
     }
 
     function onToggleTodo(todo) {

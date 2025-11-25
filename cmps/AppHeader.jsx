@@ -32,6 +32,7 @@ export function AppHeader() {
             <section className="header-container">
                 <h1>React Todo App</h1>
                 <span>Done todos: {getDoneTodosPrecents()}%</span>
+                {loggedinUser? <span>Your balance: {loggedinUser.balance}</span>:''}
                 <progress  value={getDoneTodosPrecents()} max="100"></progress>
                 {loggedinUser ? (
                     < section >

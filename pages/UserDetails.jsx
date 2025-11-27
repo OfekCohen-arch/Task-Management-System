@@ -8,7 +8,7 @@ import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 import { ActivityList } from "../cmps/ActivityList.jsx"
 
 export function UserDetails(){
-    const loggedinUser = useSelector(storeState => storeState.loggedinUser)
+    const loggedinUser = useSelector(storeState => storeState.userModule.loggedinUser)
     // console.log('loggedinUser:', loggedinUser)
     const [userDetailsToEdit, setUserDetailsToEdit] = useState(null)
     const navigate = useNavigate()

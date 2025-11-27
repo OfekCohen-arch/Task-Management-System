@@ -1,7 +1,7 @@
 import { todoService } from "../services/todo.service.js"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 import { getTodo,saveTodo } from "../store/todo.actions.js"
-import { GET_TODO } from "../store/store.js"
+import { GET_TODO } from "../store/reducers/todo.reducer.js"
 import { addBalance } from "../store/user.actions.js"
 
 const { useState, useEffect } = React
@@ -10,8 +10,8 @@ const { useNavigate, useParams } = ReactRouterDOM
 
 export function TodoEdit() {
 
-    const todoToEdit = useSelector((state)=>state.todoToGet)
-    const isLoading = useSelector((state)=>state.isLoading)
+    const todoToEdit = useSelector((storeState)=>storeState.todoModule.todoToGet)
+    const isLoading = useSelector((storeState)=>storeState.todoModule.isLoading)
     const navigate = useNavigate()
     const params = useParams()
     const dispatch = useDispatch()

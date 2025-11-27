@@ -1,5 +1,6 @@
 import { userService } from "../services/user.service.js"
-import {SET_USER, store } from "./store.js"
+import {SET_USER } from "./reducers/user.reducer.js"
+import {store} from "./store.js"
 
 export function login(credentials) {
 
@@ -54,7 +55,7 @@ export function updateUser(userToUpdate){
 export function addActivity(txt){
      return userService.addActivity(txt)
         .then((updatedUser) => {
-            store.dispatch({ type: SET_USER, user: updatedUser })
+            store.dispatch({ type: SET_USER, loggedinUser: updatedUser })
         })
         .catch(err => {
             console.error('Cannot add activity:', err)

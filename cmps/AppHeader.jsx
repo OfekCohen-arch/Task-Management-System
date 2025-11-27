@@ -1,4 +1,4 @@
-const { useState } = React
+const { usestoreState } = React
 const { Link, NavLink } = ReactRouterDOM
 const { useNavigate } = ReactRouter
 const {useSelector,useDispatch} = ReactRedux
@@ -10,7 +10,7 @@ import {logout} from '../store/user.actions.js'
 
 export function AppHeader() {
     const navigate = useNavigate()
-    const loggedinUser = useSelector((state)=>state.loggedinUser)
+    const loggedinUser = useSelector((storeState)=>storeState.userModule.loggedinUser)
     const dispatch = useDispatch()
     function onLogout() {
         logout()
@@ -22,7 +22,7 @@ export function AppHeader() {
             })
     }
    function getDoneTodosPrecents(){
-    const todos = useSelector((state)=>state.todos)
+    const todos = useSelector((storeState)=>storeState.todoModule.todos)
     const doneTodosNumber = todos.filter(todo=>todo.isDone).length
     const doneTodosPrecent = doneTodosNumber/todos.length * 100
     

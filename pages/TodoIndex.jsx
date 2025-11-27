@@ -10,8 +10,8 @@ const { Link, useSearchParams } = ReactRouterDOM
 
 export function TodoIndex() {
 
-    const todos = useSelector((state) => state.todos)
-    const isLoading = useSelector((state) => state.isLoading)
+    const todos = useSelector((storeState) => storeState.todoModule.todos)
+    const isLoading = useSelector((storeState) => storeState.todoModule.isLoading)
 
     const dispatch = useDispatch()
 
@@ -20,7 +20,7 @@ export function TodoIndex() {
 
    // const defaultFilter = todoService.getFilterFromSearchParams(searchParams)
 
-    const filterBy = useSelector((state)=>state.filterBy)
+    const filterBy = useSelector((storeState)=>storeState.todoModule.filterBy)
 
     useEffect(() => {
         setSearchParams(filterBy)

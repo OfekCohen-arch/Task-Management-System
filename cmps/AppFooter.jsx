@@ -1,8 +1,8 @@
 const {useSelector} = ReactRedux
 export function AppFooter(){
-    const loggedinUser = useSelector((state)=>state.loggedinUser)
+    const loggedinUser = useSelector((storeState)=>storeState.userModule.loggedinUser)
     function getDoneTodosPrecents(){
-    const todos = useSelector((state)=>state.todos)
+    const todos = useSelector((storeState)=>storeState.todoModule.todos)
     const doneTodosNumber = todos.filter(todo=>todo.isDone).length
     const doneTodosPrecent = doneTodosNumber/todos.length * 100
     

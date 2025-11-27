@@ -6,8 +6,8 @@ const { useState, useEffect } = React
 const { useParams, useNavigate, Link } = ReactRouterDOM
 
 export function TodoDetails() {
-    const todo = useSelector((state)=>state.todoToGet)
-    const isLoading = useSelector((state)=>state.isLoading)
+    const todo = useSelector((storeState)=>storeState.todoModule.todoToGet)
+    const isLoading = useSelector((storeState)=>storeState.todoModule.isLoading)
     const params = useParams()
     const navigate = useNavigate()
 

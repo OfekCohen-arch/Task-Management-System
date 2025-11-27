@@ -12,6 +12,7 @@ export const userService = {
     updateBalance,
     updateUser,
     getDefaultPrefs,
+    addActivity
 }
 const STORAGE_KEY_LOGGEDIN = 'user'
 const STORAGE_KEY = 'userDB'
@@ -95,7 +96,23 @@ const loggedinUser = getLoggedinUser()
 function getDefaultPrefs() {
     return { color: '#eeeeee', bgColor: "#191919", fullname: '' }
 }
+function addActivity(txt){
+    const loggedinUser = getLoggedinUser()
+    if(!loggedinUser) return Promise.reject('No loggedin user')
+        const activity = {txt: txt, at: Date.now()}
+    return getById(loggedinUser._id)
+    .then(user=>{
+      if(!user.activities) user.activities = []
+        user.activities.unshift(activity)
 
+            return storageService.put(STORAGE_KEY, user)
+                .then((savedUser) => {
+                    _setLoggedinUser(savedUser)
+                    return savedUser
+                })
+        
+    })
+}
 // signup({username: 'muki', password: 'muki1', fullname: 'Muki Ja'})
 // login({username: 'muki', password: 'muki1'})
 

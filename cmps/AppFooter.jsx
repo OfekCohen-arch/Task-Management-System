@@ -14,10 +14,10 @@ export function AppFooter(){
         return { color, backgroundColor }
     }
     return (
-        <footer className="app-footer full main-layout" style={getStyleByUser()}>
+        <footer className="full" style={getStyleByUser()}>
             <section className="footer-container" >
-               <span>Done todos: {getDoneTodosPrecents()}%</span>
-                {loggedinUser? <span>Your balance: {loggedinUser.balance}</span>:''}
+               <span>Done todos: {getDoneTodosPrecents()}%</span><br/>
+                {loggedinUser? <span>Your balance: {loggedinUser.balance}</span>:''}<br/>
                 <progress  value={getDoneTodosPrecents()} max="100"></progress> 
             </section>
         </footer>

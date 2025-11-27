@@ -3,8 +3,9 @@ const {useNavigate} = ReactRouterDOM
 const {useSelector} = ReactRedux
 
 import { utilService } from "../services/util.service.js"
-import { updateUser } from '../store/actions/user.actions.js'
+import { updateUser } from '../store/user.actions.js'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
+import { ActivityList } from "../cmps/ActivityList.jsx"
 
 export function UserDetails(){
     const loggedinUser = useSelector(storeState => storeState.loggedinUser)
@@ -77,6 +78,12 @@ export function UserDetails(){
                 <input type="color" name="bgColor" value={userDetailsToEdit.bgColor} onChange={handleChange} />
                 <button type="submit">save</button>
             </form>
+            {activities &&
+                <ActivityList
+                    activities={activities}
+                    getActivityTime={getActivityTime}
+                />
+            }
         </div>
     )   
 }

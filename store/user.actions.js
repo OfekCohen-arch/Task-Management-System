@@ -43,10 +43,22 @@ export function addBalance(){
 export function updateUser(userToUpdate){
     return userService.updateUser(userToUpdate)
     .then((updatedUser)=>{
-     store.dispatch({type: SET_USER, loggedinUser: updatedUser})  
+     store.dispatch({type: SET_USER, loggedinUser: updatedUser})
+       
     })
     .catch(err => {
             console.error('Cannot update user:', err)
             throw err
         })
+}
+export function addActivity(txt){
+     return userService.addActivity(txt)
+        .then((updatedUser) => {
+            store.dispatch({ type: SET_USER, user: updatedUser })
+        })
+        .catch(err => {
+            console.error('Cannot add activity:', err)
+            throw err
+        })
+
 }

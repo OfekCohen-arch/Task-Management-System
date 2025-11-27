@@ -53,6 +53,7 @@ export function TodoEdit() {
             if(savedTodo.isDone) addBalance()
                 navigate('/todo')
                 showSuccessMsg(`Todo Saved (id: ${savedTodo._id})`)
+                
             })
             .catch(err => {
                 showErrorMsg('Cannot save todo')

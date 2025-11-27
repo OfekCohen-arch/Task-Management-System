@@ -59,7 +59,7 @@ function appReducer(state = initialState, cmd = {}) {
     case SET_USER:
       return {
         ...state,
-        loggedinUser: cmd.loggedinUser,
+        loggedinUser: cmd.user,
       };
     case SET_FILTER_BY:
       return {

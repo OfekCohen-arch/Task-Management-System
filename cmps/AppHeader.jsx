@@ -34,7 +34,7 @@ export function AppHeader() {
         return { color, backgroundColor }
     }
     return (
-        <header className="app-header full main-layout" style={getStyleByUser()}>
+        <header className="app-header main-layout full" style={getStyleByUser()}>
             <section className="header-container">
                 <h1>React Todo App</h1>
                 <span>Done todos: {getDoneTodosPrecents()}%</span>

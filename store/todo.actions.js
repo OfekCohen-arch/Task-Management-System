@@ -4,7 +4,7 @@ import { GET_TODO,ADD_TODO, REMOVE_TODO, SET_TODOS, SET_IS_LOADING, UPDATE_TODO,
 import { addActivity } from "./user.actions.js";
 import { store } from "./store.js";
 
-export function loadTodos(filterBy) {
+export function loadTodos(filterBy = {}) {
 
     store.dispatch({ type: SET_IS_LOADING, isLoading: true })
 

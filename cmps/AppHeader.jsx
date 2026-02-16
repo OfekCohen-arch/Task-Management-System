@@ -7,6 +7,8 @@ import { UserMsg } from "./UserMsg.jsx"
 import { LoginSignup } from './LoginSignup.jsx'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 import {logout} from '../store/user.actions.js'
+import { loadTodos } from "../store/todo.actions.js"
+const {useState,useEffect} = React
 
 export function AppHeader() {
     const navigate = useNavigate()
@@ -21,7 +23,7 @@ export function AppHeader() {
                 showErrorMsg('OOPs try again')
             })
     }
-   function getDoneTodosPrecents(){
+    function getDoneTodosPrecents(){
     const todos = useSelector((storeState)=>storeState.todoModule.todos)
     const doneTodosNumber = todos.filter(todo=>todo.isDone).length
     const doneTodosPrecent = doneTodosNumber/todos.length * 100
@@ -33,6 +35,9 @@ export function AppHeader() {
         const { color, bgColor: backgroundColor } = loggedinUser.pref
         return { color, backgroundColor }
     }
+    useEffect(()=>{
+    loadTodos()
+    },[])
     return (
         <header className="app-header main-layout full" style={getStyleByUser()}>
             <section className="header-container">

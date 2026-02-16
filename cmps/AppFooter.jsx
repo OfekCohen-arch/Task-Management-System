@@ -1,4 +1,7 @@
+import { loadTodos } from "../store/todo.actions.js"
+
 const {useSelector} = ReactRedux
+const {useState,useEffect} = React
 export function AppFooter(){
     const loggedinUser = useSelector((storeState)=>storeState.userModule.loggedinUser)
     function getDoneTodosPrecents(){
@@ -13,6 +16,9 @@ export function AppFooter(){
         const { color, bgColor: backgroundColor } = loggedinUser.pref
         return { color, backgroundColor }
     }
+    useEffect(()=>{
+    loadTodos()
+    },[])
     return (
         <footer className="full" style={getStyleByUser()}>
             <section className="footer-container" >

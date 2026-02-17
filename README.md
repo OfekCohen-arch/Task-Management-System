@@ -2,7 +2,7 @@
 
 A front-end task management application built with JavaScript and React-style components.
 
-This project can be run either using **Live Server** (VS Code extension) or with Node.js tools.
+This project can be run either using **Live Server** (VS Code extension).
 
 ---
 
@@ -28,21 +28,17 @@ The project is organized into components, services, and pages for better scalabi
 
 You need one of the following:
 
-### Option 1: Live Server (Recommended for quick start)
+###  Live Server (Recommended for quick start)
 
 - Visual Studio Code
 - Live Server extension
 
-### Option 2: Node.js
-
-- Node.js
-- npm or yarn (if dependencies are used)
 
 ---
 
 ## ▶️ How to Run
 
-### 🔹 Method 1: Using Live Server (VS Code)
+### 🔹  Using Live Server (VS Code)
 
 1. Open the project folder in VS Code
 2. Right-click on `index.html`
@@ -51,14 +47,6 @@ You need one of the following:
 
 ---
 
-### 🔹 Method 2: Using Node.js (Optional)
-
-If the project uses npm:
-
-```bash
-npm install
-npm start
-If package.json does not exist, use Live Server instead.
 
 📁 Project Structure
 Task-Management-System/
@@ -83,7 +71,6 @@ Components are organized in separate folders.
 The app runs fully on the client side.
 
 📌 Future Improvements
-Backend integration
 
 User authentication
 
